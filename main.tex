@@ -1,0 +1,45 @@
+\documentclass[10pt,a4paper,twocolumn]{ctexart}
+
+% 控制页面边距
+\usepackage[left=6mm,right=6mm,top=8mm,bottom=8mm]{geometry}
+
+% 引入数学公式宏包
+\usepackage{amsmath}
+
+% 控制行间距
+\usepackage{setspace}
+\setstretch{0.92}  % 0.9~1.0 之间可调
+
+% 压缩段落间距、标题压缩
+\usepackage{titlesec}
+
+\titlespacing\section{0pt}{4pt}{2pt}
+\titlespacing\subsection{0pt}{3pt}{1pt}
+
+\titleformat{\section}{\small\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\small\bfseries}{\thesubsection}{0.4em}{}
+
+% 数学公式压缩
+\abovedisplayskip=4pt
+\belowdisplayskip=4pt
+
+% 列表压缩
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.5em}  % 去除段间距 + 减少缩进
+
+% 引入多列环境
+\usepackage{multicol}
+
+\begin{document}
+
+% 将正文默认字体改为 8pt
+\renewcommand\normalsize{\fontsize{8}{9.2}\selectfont}
+\normalsize
+
+% 第1章 数值计算的特点和原则
+\input{section1.tex}
+
+% 第2章 插值与拟合算法
+\input{section2.tex}
+
+\end{document}
