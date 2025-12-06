@@ -2,31 +2,32 @@
 
 \subsection{二进制/十进制转换}
 
-二进制转十进制
+二进制→十进制
 
 $$
 (b_{2},b_{1},b_{0},b_{-1},b_{-2})_{2}=\sum_{i=-2}^2 b_{i}\times 2^i
 $$
 
-十进制转换二进制：整数部分和小数部分分开转换，然后拼接起来
+十进制→二进制
 
-
-1. 整数部分："除2取余，逆序排列"法
-
-2. 小数部分："乘2取整，顺序排列"法
-
+\begin{itemize}
+    \item 整数部分："除2取余，逆序排列"法
+    \item 小数部分："乘2取整，顺序排列"法
+\end{itemize}
 
 \subsection{误差与误差限}
 
-误差：若 $x^*$ 是 $x$ 的近似，称 $e^* = x^* - x$ 为 $x^*$ 的误差（绝对误差）
-
-绝对误差限：若 $|e^*|<\varepsilon^*$ ，则称 $\varepsilon^*$ 为绝对误差限，$x$ 的范围为 $x^* - \varepsilon^* \leq x \leq x^*+ \varepsilon^*$
-
-相对误差: $e_{r}^* = \frac{e^*}{x} \approx \frac{e^*}{x^*},|e_{r}^*| \leq \varepsilon_{r}^*$
+\begin{itemize}
+    \item 误差：若 $x^*$ 是 $x$ 的近似，称 $e^* = x^* - x$ 为 $x^*$ 的误差（绝对误差）
+    \item 绝对误差限：若 $|e^*|<\varepsilon^*$ ，则称 $\varepsilon^*$ 为绝对误差限，$x$ 的范围为 $x^* - \varepsilon^* \leq x \leq x^*+ \varepsilon^*$
+    \item 相对误差: $e_{r}^* = \frac{e^*}{x} \approx \frac{e^*}{x^*},|e_{r}^*| \leq \varepsilon_{r}^*$
+\end{itemize}
 
 \subsection{有效数字}
 
-定义：$x=\pm 0.a_{1}a_{2}\dots a_{n} \times 10^m$，其中 m 是整数，$a_{1}$ 到 $a_{n}$ 都是 0 到 9 中的某个数，且 $a_{1} \neq 0$ 。如果有 $|x-x^*|<0.5 \times 10^{-k}$ ，则 $x^*$ 有 $m+k$ 位有效数字。
+\begin{itemize}
+    \item 定义：$x=\pm 0.a_{1}a_{2}\dots a_{n} \times 10^m$，其中 m 是整数，$a_{1}$ 到 $a_{n}$ 都是 0 到 9 中的某个数，且 $a_{1} \neq 0$ 。如果有 $|x-x^*|<0.5 \times 10^{-k}$ ，则 $x^*$ 有 $m+k$ 位有效数字。
+\end{itemize}
 
 Q：3.0 与 3.00 分别具有几位有效数字？ A：2 位和 3 位。
 
