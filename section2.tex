@@ -2,8 +2,78 @@
 
 \subsection{Lagrange插值}
 
+Lagrange插值公式：
+
 \begin{align*}
 p(x) &= \sum_{i=0}^n y_{i}l_{i}({x}) \\
 l_{i}(x) &= \prod_{j=0,i \neq j}^n \frac{x-x_{j}}{x_{i}-x_{j}}    
+\end{align*}
+
+Lagrange插值余项：
+
+\begin{align*}
+    R_{n}(x) = f(x) - L_{n}(x)= \frac{f^{(n-1)}(\xi)}{(n+1)!} \omega(x)
+\end{align*}
+
+\subsection{NewTon插值}
+
+差商：
+
+\begin{align*}
+f[x_{i},x_{j}] &= \frac{f_{j}-f_{i}}{x_{j}-x_{i}} &&\text{一阶差商} \\
+f[x_{i},x_{j},x_{k}] &= \frac{f[x_{k},x_{j}]-f[x_{j},x_{i}]}{x_{k}-x_{i}} &&\text{二阶差商} \\
+f[x_{0},x_{1},x_{2},\dots,x_{k}] &= \frac{f[x_{1},x_{2},\dots ,x_{k}]-f[x_{0},x_{1},\dots,x_{k-1}]}{x_{k}-x_{0}} &&\text{k阶差商}
+\end{align*} 
+
+
+差商的性质：
+
+\begin{itemize}
+    \item 差商可以表示为函数值的线性组合
+    \begin{itemize}
+        \item $f[x_{0},x_{1},\dots,x_{n}]=\sum_{j=0}^n \frac{f(x_{j})}{\omega'(x_{j})}$
+        \item 其中 $\omega(x)=(x-x_{0})(x-x_{1})\dots(x-x_{n})$
+    \end{itemize}
+
+    \item 对称性：差商与节点的排列顺序无关
+    \item $f[x_{0},\dots,x_{n}]=\frac{f^{(n)}(\xi)}{n!},(\xi \in (a,b))$
+    \begin{itemize}
+        \item 可用于快速计算一些差商值，如 $f(x)=x^2$，求 $f[1,2,3,4]$
+    \end{itemize}
+
+\end{itemize}
+
+
+差商表：
+
+\begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x_k$ & $f(x)$ & 1阶差商 & 2阶差商 & 3阶差商 & 4阶差商 \\
+    \hline
+    $x_0$ & $f(x_0)$ & & & & \\
+    \hline
+    $x_1$ & $f(x_1)$ & $f[x_1,x_0]$ & & & \\
+    \hline
+    $x_2$ & $f(x_2)$ & $f[x_2,x_0]$ & $f[x_2,x_1,x_0]$ & & \\
+    \hline
+    $x_3$ & $f(x_3)$ & $f[x_3,x_0]$ & $f[x_3,x_1,x_0]$ & $f[x_3,x_2,x_1,x_0]$ & \\
+    \hline
+    $x_4$ & $f(x_4)$ & $f[x_4,x_0]$ & $f[x_4,x_1,x_0]$ & $f[x_4,x_2,x_1,x_0]$ & $f[x_4,x_3,x_2,x_1,x_0]$ \\
+    \hline
+\end{tabular}
+
+NewTon 插值公式：
+
+\begin{align*}
+    N_n(x) = f(x_0)
+    + f[x_0, x_1](x - x_0)
+    + \cdots
+    + f[x_0, \dots, x_n](x - x_0)\cdots(x - x_{n-1})
+\end{align*}
+
+NewTon插值余项：
+
+\begin{align*}
+    R_{n}(x) = f[x,x_{0},\dots,x_{n}]\omega(x)
 \end{align*}
 
