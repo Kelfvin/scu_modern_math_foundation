@@ -1,0 +1,34 @@
+\section{数值微分法}
+
+\subsection{求解析解}
+
+\subsubsection{一阶线性的公式法}
+
+将线性方程化为：$y'+p(x)y=q(x)$
+
+公式：$\mu(x)y=\int \mu(x)q(x)dx + C  \qquad
+    \mu(x)=e^{\int p(x) dx}$
+
+\subsection{求数值解}
+
+\begin{align*}
+    \begin{cases}
+    \frac{dy}{dx}&= f(x,y) \\
+    y(a) &= y_0
+    \end{cases}
+\end{align*}
+
+对区间 $[a,b]$ 做等距分割：$x_i = a+ih \qquad i=0,1,\dots,n-1 \qquad h = \frac{b-a}{n}$
+
+\subsubsection{显式Euler法}
+
+$
+y_{k+1} = y_k + hf(x_k,y_k) \qquad k = 0,1,\dots,n-1
+$
+
+\subsubsection{隐式Euler法}
+
+$
+    y_{k+1} = y_k + hf(x_{k+1},y_{k+1}) 
+$
+

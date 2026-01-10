@@ -2,18 +2,10 @@
 
 \subsection{Lagrange插值}
 
-Lagrange插值公式：
+$p(x) = \sum_{i=0}^n y_{i}l_{i}({x}) \qquad
+l_{i}(x) = \prod_{j=0,i \neq j}^n \frac{x-x_{j}}{x_{i}-x_{j}}$
 
-\begin{align*}
-p(x) &= \sum_{i=0}^n y_{i}l_{i}({x}) \\
-l_{i}(x) &= \prod_{j=0,i \neq j}^n \frac{x-x_{j}}{x_{i}-x_{j}}    
-\end{align*}
-
-Lagrange插值余项：
-
-\begin{align*}
-    R_{n}(x) = f(x) - L_{n}(x)= \frac{f^{(n-1)}(\xi)}{(n+1)!} \omega(x)
-\end{align*}
+$R_{n}(x) = f(x) - L_{n}(x)= \frac{f^{(n-1)}(\xi)}{(n+1)!} \omega(x)$
 
 \subsection{NewTon插值}
 
@@ -46,34 +38,30 @@ f[x_{0},x_{1},x_{2},\dots,x_{k}] &= \frac{f[x_{1},x_{2},\dots ,x_{k}]-f[x_{0},x_
 
 差商表：
 
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
     \hline
-    $x_k$ & $f(x)$ & 1阶差商 & 2阶差商 & 3阶差商 & 4阶差商 \\
+    $x_k$ & $f(x)$ & 1阶差商 & 2阶差商 & 3阶差商 \\
     \hline
-    $x_0$ & $f(x_0)$ & & & & \\
+    $x_0$ & $f(x_0)$ & & & \\
     \hline
-    $x_1$ & $f(x_1)$ & $f[x_1,x_0]$ & & & \\
+    $x_1$ & $f(x_1)$ & $f[x_1,x_0]$ & & \\
     \hline
-    $x_2$ & $f(x_2)$ & $f[x_2,x_0]$ & $f[x_2,x_1,x_0]$ & & \\
+    $x_2$ & $f(x_2)$ & $f[x_2,x_0]$ & $f[x_2,x_1,x_0]$ & \\
     \hline
-    $x_3$ & $f(x_3)$ & $f[x_3,x_0]$ & $f[x_3,x_1,x_0]$ & $f[x_3,x_2,x_1,x_0]$ & \\
-    \hline
-    $x_4$ & $f(x_4)$ & $f[x_4,x_0]$ & $f[x_4,x_1,x_0]$ & $f[x_4,x_2,x_1,x_0]$ & $f[x_4,x_3,x_2,x_1,x_0]$ \\
+    $x_3$ & $f(x_3)$ & $f[x_3,x_0]$ & $f[x_3,x_1,x_0]$ & $f[x_3,x_2,x_1,x_0]$ \\
     \hline
 \end{tabular}
 
 NewTon 插值公式：
 
-\begin{align*}
-    N_n(x) = f(x_0)
+$
+   N_n(x) = f(x_0)
     + f[x_0, x_1](x - x_0)
     + \cdots
     + f[x_0, \dots, x_n](x - x_0)\cdots(x - x_{n-1})
-\end{align*}
+$
 
-NewTon插值余项：
-
-\begin{align*}
+$
     R_{n}(x) = f[x,x_{0},\dots,x_{n}]\omega(x)
-\end{align*}
+$
 
