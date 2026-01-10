@@ -1,0 +1,89 @@
+\section{第1题：Hermite插值}
+
+给定$n$ 个点的函数值，给定 $m$ 个点的导数值，求 $H(x)$ 和插值余项。
+
+\subsection{基本解法：插值多项式+导数补偿}
+
+\[
+H(x) =\underbrace{N_n(x)}_\text{n个点插值}  + 
+\underbrace{
+    \overbrace{(Ax^{m-1}+Bx^{m-2}\cdots) }^{\text{待定多项式:与导数点数量相关}} \times
+    \overbrace{(x-x_0)(x-x_1)\cdots(x-x_n)}^{\text{满足函数值条件的零点多项式}}
+}_\text{导数补偿项}
+\]
+
+1. 使用Newton插值公式求 $N_n(x)$。
+
+2. 对 H(x) 求导数，并将导数条件代入，解出待定多项式的系数。
+
+插值余项：
+
+\[
+R(x) = \frac{f^{(n+m)} }{(n+m)!} \prod_{i=1}^n (x - x_i) \prod_{x_j \in D}(x-x_j)
+\]
+
+其中 $D$ 是 $m$ 个给出导数值的点的集合。
+
+\subsubsection*{NewTon插值}
+
+差商：
+
+\begin{align*}
+f[x_{i},x_{j}] &= \frac{f(x_j)-f(x_i)}{x_{j}-x_{i}} &&\text{一阶差商} \\
+f[x_{0},x_{1},x_{2},\dots,x_{k}] &= \frac{f[x_{1},x_{2},\dots ,x_{k}]-f[x_{0},x_{1},\dots,x_{k-1}]}{x_{k}-x_{0}} &&\text{k阶差商}
+\end{align*} 
+
+差商表：
+
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x_k$ & $f(x)$ & 1阶差商 & 2阶差商 & 3阶差商 \\
+    \hline
+    $x_0$ & $f(x_0)$ & & & \\
+    \hline
+    $x_1$ & $f(x_1)$ & $f[x_0,x_1]$ & & \\
+    \hline
+    $x_2$ & $f(x_2)$ & $f[x_1,x_2]$ & $f[x_0,x_1,x_2]$ & \\
+    \hline
+    $x_3$ & $f(x_3)$ & $f[x_3,x_2]$ & $f[x_2,x_1,x_3]$ & $f[x_3,x_2,x_1,x_0]$ \\
+    \hline
+\end{tabular}
+
+NewTon 插值公式：
+
+$
+   N_n(x) = f(x_0)
+    + f[x_0, x_1](x - x_0)
+    + \cdots
+    + f[x_0, \dots, x_n](x - x_0)\cdots(x - x_{n-1})
+$
+
+$
+    R_{n}(x) = f[x,x_{0},\dots,x_{n}]\omega(x)
+$
+
+
+\subsection{方法2：因式分解法}
+
+若某些条件导致$H(x)-c$在某些点具有零点（甚至重零点），就把对应因子直接提出来，从而大幅减少未知数。
+
+\subsubsection*{模板 1：两个点函数值相同}
+若已知$H(a)=c,\quad H(b)=c\quad (a\ne b)$,则
+
+\[
+\boxed{H(x)=c+(x-a)(x-b)\,Q(x)}.
+\]
+
+如果题目知道 $H$ 的次数上界为 $n$，则 $Q 次数 \le n-2.$，随后把剩余条件代入，解 $Q(x)$ 的系数即可。
+
+\subsubsection*{模板 2：同一点函数值和一阶导都给出（重零点）}
+若已知$H(a)=c,\quad H'(a)=c',$则令$G(x)=H(x)-c-c'(x-a),$设
+\[
+\boxed{H(x)=c+c'(x-a)+(x-a)^2\,Q(x)}.
+\]
+同样若 $\deg H\le n$，则 $\deg Q\le n-2$。
+
+
+
+
+
