@@ -1,0 +1,74 @@
+\section{数值积分}
+
+\subsection{代数精度}
+
+确定参数 $\{A_0,A_1,\dots,A_n\}$ 使得数值积分公式 $\int_{a}^{b} f(x) dx \approx \sum_{k=0}^n A_k f(x_k)$ 的代数精度尽可能高，指出代数精度是多少。
+
+\begin{itemize}
+    \item 取 $f(x)=1,x,x^2,\dots$ 求解方程组得到 $\{A_0,A_1,\dots,A_n\}$。
+    \item 依次取 $f(x)=1,x,x^2,\dots$ ，验证求积公式是否成立，如果第一个不成立的是 $x^m$ ，则代数精度是 $m-1$。
+\end{itemize}
+
+\subsection{求积公式\&代数精度}
+
+对定积分 $\int_a^b f(x) dx$ 分别使用辛普森公式、二等分的复化梯形公式和两个点的高斯公式进行计算并比较有效数字。
+
+\subsubsection*{辛普森公式：}
+
+\[
+I_S = (b-a) \left[ \frac{1}{6} f(a) + \frac{4}{6} f(\frac{a+b}{2}) + \frac{1}{6} f(b) \right]
+\]
+
+
+\subsubsection*{二等分的复化梯形公式：}
+
+$h=\frac{b-a}{2}$
+
+\[
+I_T = \frac{h}{2} \left[ f(a) + 2 f(\frac{a+b}{2}) + f(b) \right]
+\]
+
+\[
+R_{T_2} = - \frac{(b-a)}{12} h^2 f''(\eta)
+\]
+
+
+\subsubsection*{2 个点的高斯公式：}
+
+先将区间 $[a,b]$ 变换到 $[-1,1]$，令 $x = \frac{a+b}{2}+\frac{b-a}{2}t, dx = \frac{b-a}{2} dt$
+
+\[
+I_G =\int_a^b f(x) dx = \frac{b-a}{2} \int_{-1}^1 f\left( \frac{a+b}{2}+\frac{b-a}{2}t \right) dt
+\]
+
+令$\varphi(t) = f\left( \frac{a+b}{2}+\frac{b-a}{2}t \right)$，则
+
+\[
+\begin{aligned}
+I_G=\int_{-1}^1f(t) dt 
+&=\frac{b-a}{2} \left[ \varphi(-\frac{1}{\sqrt{3}}) + \frac{b-a}{2} \varphi(\frac{1}{\sqrt{3}}) \right] \\
+&=\frac{b-a}{2} \left[ f\left( \frac{a+b}{2} - \frac{b-a}{2\sqrt{3}} \right) + f\left( \frac{a+b}{2} + \frac{b-a}{2\sqrt{3}} \right) \right]
+\end{aligned}
+\]
+
+\subsubsection*{比较有效数字：}
+
+首先根据不定积分公式求 $I=\int_a^b f(x) dx$ 的准确结果 $I^*$。
+
+然后分别计算 $|I^*-I_S|$ 、 $|I^*-I_T|$和 $|I^*-I_G|$，记为 $e_S,e_T,e_G$。判断 $e_S,e_T,e_G$ 分别有多少位有效数字。
+
+\textbf{有效数字}：$x=\pm 0.a_{1}a_{2}\dots a_{n} \times 10^m$，其中 m 是整数，$a_{1}$ 到 $a_{n}$ 都是 0 到 9 中的某个数，且 $a_{1} \neq 0$ 。如果有 $|x-x^*|<0.5 \times 10^{-k}$ ，则 $x^*$ 有 $m+k$ 位有效数字。
+
+\subsection{求准确结果所需节点数}
+
+对于 $I=\int_a^b f(x) dx$，如果要得到准确结果，牛顿-柯特斯公式和高斯公式分别需要多少节点数进行计算？
+
+所需最低代数精度：$M = f(x)的最高次数$
+
+对于n个节点的Gauss公式，代数精度为2n-1：$M \leq 2n-1$
+
+对于n阶N-C公式：
+
+当n为奇数时具有n次代数精度：$M \leq n$
+
+当n为偶数时具有n+1次代数精度：$M \leq n+1$
