@@ -1,0 +1,129 @@
+\section{最小二乘拟合\&最佳平方逼近}
+
+\subsection{最小二乘拟合}
+
+给定m+1个点x和y，用最小二乘法确定最优的拟合曲线；注意下标从0开始。
+
+设 $y=a+bx$，然后代入$x_i$和$y_i$，得到m+1个方程（超定方程组）：
+
+\[
+\left\{
+    \begin{aligned}
+        a+b x_0 &= y_0 \\
+        a+b x_1 &= y_1 \\
+        & \vdots \\
+        a+b x_m &= y_m
+    \end{aligned}
+\right.
+\Longleftrightarrow
+\begin{bmatrix}
+    1 & x_0 \\
+    1 & x_1 \\
+    \vdots & \vdots \\
+    1 & x_m
+\end{bmatrix}
+\begin{bmatrix}
+    a \\
+    b
+\end{bmatrix}
+=
+\begin{bmatrix}
+    y_0 \\
+    y_1 \\
+    \vdots \\
+    y_m
+\end{bmatrix}
+\Longrightarrow
+\mathbf{A} \alpha = \beta
+\]
+
+解法方程组：
+
+\[
+A^T A \alpha = A^T \beta
+\Longrightarrow
+\begin{bmatrix}
+    m+1 & \sum_{i=0}^m x_i \\
+    \sum_{i=0}^m x_i & \sum_{i=0}^m x_i^2
+\end{bmatrix}
+\begin{bmatrix}
+    a \\
+    b
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \sum_{i=0}^m y_i \\
+    \sum_{i=0}^m y_i x_i
+\end{bmatrix}
+\]
+
+对于n次多项式拟合，只需将矩阵$\mathbf{A}$的列数改为$n+1$，每一列对应$x^0,x^1,\dots,x^{n}$即可。$n$次的法方程组为：
+
+\[
+\begin{bmatrix}
+&\sum_{i=0}^m 1 & \sum_{i=0}^m x_{i} &\dots & \sum_{i=0}^m x_{i}^n \\ 
+&\sum_{i=0}^m x_{i} & \sum_{i=0}^m x_{i}^2 &\dots & \sum_{i=0}^m x_{i}^{n+1} \\
+&\vdots &\vdots & \ddots & \vdots  \\
+&\sum_{i=0}^m x_{i}^n & \sum_{i=0}^m x_{i}^{n+1} &\dots & \sum_{i=0}^m x_{i}^{2n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{0}  \\
+a_{1} \\
+\vdots \\
+a_{n}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\sum_{i=0}^m y_{i} \\
+\sum_{i=0}^m y_{i}x_{i} \\ 
+\vdots \\
+\sum_{i=0}^m y_{i}x_{i}^n
+\end{bmatrix}
+\]
+
+\subsection{最佳平方逼近}
+
+求 $f(x)$在区间 $[a,b]$ 上的1次最佳平方逼近多项式。
+
+设置多项式为 $f(x) = a_0 \varphi_0(x) + a_1 \varphi_1(x)$。$\varphi_0(x)=1$，$\varphi_1(x)=x$。
+
+写出法方程：
+
+\[
+\begin{bmatrix}
+    (\varphi_0,\varphi_0) & (\varphi_0,\varphi_1) \\
+    (\varphi_1,\varphi_0) & (\varphi_1,\varphi_1)
+\end{bmatrix}
+\begin{bmatrix}
+    a_0 \\
+    a_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+    (f,\varphi_0) \\
+    (f,\varphi_1)
+\end{bmatrix}
+\]
+
+其中 $(u,v) = \int_a^b u(x)v(x) \, dx$。
+
+另外，n次平方逼近多项式的法方程：
+
+\[
+\begin{bmatrix}
+&(\varphi_{0},\varphi_{0}) &\dots &(\varphi_{0},\varphi_{n-1}) \\
+&\vdots & \ddots & \vdots  \\
+&(\varphi_{n-1},\varphi_{0}) &\cdots & (\varphi_{n-1},\varphi_{n-1})
+\end{bmatrix}
+\begin{bmatrix}
+a_{0}  \\
+\vdots \\
+a_{n-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+(\varphi_{0},f) \\
+\vdots \\
+(\varphi_{n-1},f)
+\end{bmatrix}
+\]
