@@ -2,9 +2,9 @@
 
 \subsection{最小二乘拟合}
 
-给定m+1个点x和y，用最小二乘法确定最优的拟合曲线；注意下标从0开始。
+给定m+1个点x（下标从0开始）和y，用最小二乘法确定最优的直线$y=a+bx$。
 
-设 $y=a+bx$，然后代入$x_i$和$y_i$，得到m+1个方程（超定方程组）：
+（1）代入$x_i$和$y_i$，得到m+1超定方程组（格式抄出来即可）：
 
 \[
 \left\{
@@ -37,7 +37,7 @@
 \mathbf{A} \alpha = \beta
 \]
 
-解法方程组：
+（2）解法方程组（关键）：
 
 \[
 A^T A \alpha = A^T \beta
@@ -57,7 +57,7 @@ A^T A \alpha = A^T \beta
 \end{bmatrix}
 \]
 
-对于n次多项式拟合，只需将矩阵$\mathbf{A}$的列数改为$n+1$，每一列对应$x^0,x^1,\dots,x^{n}$即可。$n$次的法方程组为：
+拓展：对于n次多项式拟合，只需将矩阵$\mathbf{A}$的列数改为$n+1$，每一列对应$x^0,x^1,\dots,x^{n}$即可。$n$次的法方程组为：
 
 \[
 \begin{bmatrix}
@@ -85,9 +85,11 @@ a_{n}
 
 求 $f(x)$在区间 $[a,b]$ 上的1次最佳平方逼近多项式。
 
-设置多项式为 $f(x) = a_0 \varphi_0(x) + a_1 \varphi_1(x)$。$\varphi_0(x)=1$，$\varphi_1(x)=x$。
+（1）设置1次多项式为$\varphi(x) = a_0\varphi_0(x)+a_1 \varphi_1(x)$，其中$\varphi_0(x)=1$，$\varphi_1(x)=x$。
 
-写出法方程：
+n次多项式则为 $\varphi(x) = a_0 \varphi_0(x) + a_1 \varphi_1(x)+\dots+a_n \varphi_n(x)$，$\varphi_i(x)=x^i$。
+
+（2）写出法方程并求解：
 
 \[
 \begin{bmatrix}

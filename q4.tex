@@ -107,31 +107,35 @@ l_{ik} = \frac{\left( a_{ik}-\sum_{q=1}^{k-1} l_{iq}u_{qk} \right)}{u_{kk}}
 
 \subsection{Recharson迭代}
 
-令 $B=I-\alpha A$
+写出Recharson迭代格式，并给出收敛条件和最优参数。
 
-迭代格式：$x^{(k+1)} = Bx^{(k)} + \alpha b$ 
+（1）令 $B=I-\alpha A$
 
-收敛条件：$\lambda_B = 1-\alpha \lambda_A$，$\rho(B)<1 \Rightarrow |1-\alpha \lambda_A|<1$
+（2）迭代格式：$x^{(k+1)} = Bx^{(k)} + \alpha b$ 
+
+（3）收敛条件：
+
+\textcircled{1} 计算 $\lambda_A$: $|A-\lambda I|=0$
+
+\textcircled{2} $\lambda_B = 1-\alpha \lambda_A$，$\rho(B)<1 \Rightarrow |1-\alpha \lambda_A|<1$
 
 $\lambda_{\min} \leq \lambda_A \leq \lambda_{\max} \Rightarrow \rho(B) = \max\{|1-\alpha \lambda_{\min}|, |1-\alpha \lambda_{\max}|\}$
 
 最优参数 $\alpha$：$\alpha_{opt} = \frac{2}{\lambda_{\min} + \lambda_{\max}}$，$\rho(B)=\frac{\lambda_{\max}-\lambda_{\min}}{\lambda_{\max}+\lambda_{\min}} = \frac{\lambda_{\max}/\lambda_{\min}-1}{\lambda_{\max}/\lambda_{\min}+1}$
-
-求$A$的特征值：$|A-\lambda I|=0$
 
 \subsection{设计算法求矩阵第二大的特征值}
 
 (1) 求特征值范围
 
 \[
-|\lambda_i -a_{ii}| \leq \sum_{j=1,j\neq i}^n |a_ij| \quad \text{依次对} i \text{行除了} a_{ii} \text{外的其他元素求和}
+|\lambda_i -a_{ii}| \leq \sum_{j=1,j\neq i}^n |a_{ij}| \quad \text{依次对} i \text{行除了} a_{ii} \text{外的其他元素求和}
 \]
 
 (2) 位移，将原本第二模大特征值变为最大或最小特征值
 
-$B=A-pI$，$B$的特征值变成$\lambda_i -p$
+$B=A-pI$，$B$的特征值为$\lambda_A -p$
 
-$B=A+pI$，$B$的特征值变成$\lambda_i +p$
+$B=A+pI$，$B$的特征值为$\lambda_A +p$
 
 (3) 求解 $B$ 的最大或最小特征值
 
@@ -142,7 +146,7 @@ $B=A+pI$，$B$的特征值变成$\lambda_i +p$
 \[
 \left\{
 \begin{aligned}
-    y^{(k)} &= \frac{x^{(k)}}{max(|x^{(k)}|)} \\
+    y^{(k)} &= \frac{x^{(k)}}{\max(|x^{(k)}|)} \\
     x^{(k+1)} &= Bx^{(k)}
 \end{aligned}
 \right.

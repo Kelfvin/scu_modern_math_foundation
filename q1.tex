@@ -4,25 +4,18 @@
 
 \subsection{基本解法：插值多项式+导数补偿}
 
+1. 列出下列形式的插值多项式：
 \[
 H(x) =\underbrace{N_n(x)}_\text{n个点插值}  + 
 \underbrace{
-    \overbrace{(Ax^{m-1}+Bx^{m-2}\cdots) }^{\text{待定多项式:与导数点数量相关}} \times
-    \overbrace{(x-x_0)(x-x_1)\cdots(x-x_n)}^{\text{满足函数值条件的零点多项式}}
+    \overbrace{(Ax^{m-1}+Bx^{m-2}\cdots+Z)}^{\text{m为给定导数点的个数}} \times
+    \overbrace{(x-x_0)(x-x_1)\cdots(x-x_n)}^{x_i\text{为给定函数值的点}(i=0,1,\dots,n)}
 }_\text{导数补偿项}
 \]
 
-1. 使用Newton插值公式求 $N_n(x)$。
+2. 使用Newton插值公式求 $N_n(x)$。
 
-2. 对 H(x) 求导数，并将导数条件代入，解出待定多项式的系数。
-
-插值余项：
-
-\[
-R(x) = \frac{f^{(n+m)} }{(n+m)!} \prod_{i=1}^n (x - x_i) \prod_{x_j \in D}(x-x_j)
-\]
-
-其中 $D$ 是 $m$ 个给出导数值的点的集合。
+3. 对 H(x) 求导数，并将导数条件代入，解出待定多项式的系数。
 
 \subsubsection*{NewTon插值}
 
@@ -30,6 +23,8 @@ R(x) = \frac{f^{(n+m)} }{(n+m)!} \prod_{i=1}^n (x - x_i) \prod_{x_j \in D}(x-x_j
 f[x_{i},x_{j}] &= \frac{f(x_j)-f(x_i)}{x_{j}-x_{i}} &&\text{一阶差商} \\
 f[x_{0},x_{1},x_{2},\dots,x_{k}] &= \frac{f[x_{1},x_{2},\dots ,x_{k}]-f[x_{0},x_{1},\dots,x_{k-1}]}{x_{k}-x_{0}} &&\text{k阶差商}
 \end{align*} 
+
+对$x_0,x_1,x_2,x_3$按照从小到大的顺序排列
 
 \begin{tabular}{|c|c|c|c|c|}
     \hline
@@ -59,18 +54,22 @@ $
 $
 
 
-\subsection{方法2：因式分解法}
+\subsection{特殊情况：因式分解法（推荐使用）}
 
-若某些条件导致$H(x)-c$在某些点具有零点（甚至重零点），就把对应因子直接提出来，从而大幅减少未知数。
-
-\subsubsection*{模板 1：两个点函数值相同}
-若已知$H(a)=c,\quad H(b)=c\quad (a\ne b)$,则
+\subsubsection*{模板 1：函数值相同}
+若已知$f(a)=c,\quad f(b)=c\quad (a\ne b)$（两个点相同）,则
 
 \[
 \boxed{H(x)=c+(x-a)(x-b)\,Q(x)}.
 \]
 
-如果题目知道 $H$ 的次数上界为 $n$，则 $Q 次数 \le n-2.$，随后把剩余条件代入，解 $Q(x)$ 的系数即可。
+如果题目知道 $H(x)$ 的次数上界为 $n$，则 $Q(x)$ 的次数$m \le n-2$。
+
+$Q(x)=Ax^{m}+Bx^{m-1}+\cdots+Zx^{0}$
+
+随后把剩余条件代入，解 $Q(x)$ 的系数即可。
+
+扩展：如果3个点值相同则增加1项然后$Q(x)$次数变为$n-3$，以此类推。
 
 \subsubsection*{模板 2：同一点函数值和一阶导都给出（重零点）}
 若已知$H(a)=c,\quad H'(a)=c',$则令$G(x)=H(x)-c-c'(x-a),$设
@@ -79,7 +78,10 @@ $
 \]
 同样若 $\deg H\le n$，则 $\deg Q\le n-2$。
 
+\subsection{Hermite插值余项}：
 
+\[
+R(x) = \frac{f^{(n+m)}(\xi) }{(n+m)!} \prod_{i=1}^n (x - x_i) \prod_{x_j \in D}(x-x_j)
+\]
 
-
-
+其中 $D$ 是 $m$ 个给出导数值的点的集合。
