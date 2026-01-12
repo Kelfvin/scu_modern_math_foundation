@@ -1,0 +1,47 @@
+\section{数值积分}
+
+给定条件 $y' = f(x,y)$，初值 $y(1) = y_1$。（1）求解析解 （2）取步长为$h$,分别用隐式欧拉和改进欧拉方法求在$x=a$处的近似值。
+
+\subsection{求解析解}
+
+\subsubsection*{分离变量法}
+
+如果 $f(x,y)$ 可以写成 $p(x)q(x)$ 的形式，则可分离变量：
+
+\[
+\begin{aligned}
+&y'=f(x,y) \Rightarrow y'=\frac{dy}{dx}=p(x)q(x) \Rightarrow \frac{1}{p(y)}dy=q(x)dx \\
+&y = \int \frac{1}{p(y)}dy + C = \int q(x)dx +C
+\end{aligned}
+\]
+
+\subsubsection*{公式法}
+
+对于 $y' + p(x)y = q(x)$
+\[
+\mu(x) y = \int \mu(x) q(x) dx + C \quad \text{其中} \quad \mu(x) = e^{\int p(x) dx}
+\]
+
+求积分: $\int e^{(ax+b)} (cx+d) dx = (c(ax-1)+ad) e^{ax+b} / a^2 + C$
+
+秒杀公式：$y'(x) = ay(x)+bx+c$ 输出 $y(x) = -\frac{b}{a^2} - \frac{bx}{a} - \frac{c}{a} + k_1 e^{ax}$
+
+
+\subsection{欧拉法}
+
+\subsubsection*{隐式欧拉}
+
+\[
+y_{k+1} = y_k + h f(x_{k+1},y_{k+1})
+\]
+
+\subsubsection*{改进欧拉}
+
+\[
+\left\{
+\begin{aligned}
+y_{n+1}^{(p)} &= y_n + h\,f(x_n,y_n),\\
+y_{n+1}^{(c)} &= y_n + \frac{h}{2}\left[f(x_n,y_n)+f\!\left(x_{n+1},y_{n+1}^{(p)}\right)\right].
+\end{aligned}
+\right.
+\]

@@ -1,0 +1,31 @@
+\section{非线性方程求根}
+
+已知方程 $f(x) = 0$ ，在区间 $[a,b]$ 内有根，构造两个不同的收敛格式，证明收敛性并判断哪个格式收敛更快。
+
+\subsection{迭代格式}
+
+\subsubsection*{变换法}
+
+通过变换（除法、开方等）将方程改写为 $x=\varphi(x)$ 
+
+迭代格式: $x^{(k+1)} = \varphi(x^{(k)})$ 
+
+全局收敛条件：1）在$[a,b]$内，$\varphi(x) \in [a,b]$；2）$\varphi$ 可导，且存在 $L<1$ 使得 $|\varphi'(x)|\leq L, \forall x \in [a,b]$
+
+\subsubsection*{牛顿法}
+
+\[
+x_{k+1} = x_{k} - \frac{f(x)}{f'(x)}
+\]
+
+收敛条件：1）$f(a)f(b)<0$；2）$f'(x) \neq 0$，$\forall x \in [a,b]$；3）在$[a,b]$内，$f''(x)$ 不变号。则取初值 $x_0 \in [a,b]$ 且满足 $f(x_0)f''(x_0)>0$ ，则迭代收敛。
+
+\subsection{收敛及收敛阶数}
+
+设置$\alpha$为$f(\alpha)=0$在 $[a,b]$ 内的准确根（不用$x^*$是因为$\alpha$好写）。
+
+局部收敛判定: 如果 $|\varphi'(\alpha)|<1$，且在 $\alpha$ 邻近连续，则初值够近就收敛。
+
+收敛阶数：设 $x=\varphi(x)$的根具有连续$p$阶导数，且在根处 $\varphi'(\alpha)=\varphi''(\alpha)=...=\varphi^{(p-1)}(\alpha)=0$，$\varphi^{(p)}(\alpha) \neq 0$，则迭代格式的收敛阶数为 $p$ 。
+
+% TODO: 重根的情况

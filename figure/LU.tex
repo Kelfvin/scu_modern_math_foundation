@@ -1,0 +1,41 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  every node/.style={},
+]
+\tikzset{stepline/.style={draw,thick}}
+
+% --- 4x4 Matrix ---
+\matrix (M) [
+  matrix of math nodes,
+  left delimiter={[}, right delimiter={]},
+  row sep=6pt, column sep=10pt
+] {
+ u_{11} & u_{12} & u_{13} & u_{14} \\
+ l_{21} & u_{22} & u_{23} & u_{24} \\
+ l_{31} & l_{32} & u_{33} & u_{34} \\
+ l_{41} & l_{42} & l_{43} & u_{44} \\
+};
+
+% --- L-shape "corner" lines (┌) for each step ---
+% Step 1: corner at (2,2), spans to col 4 / row 4
+\draw[stepline] (M-2-2.north west) -- (M-2-4.north east);
+\draw[stepline] (M-2-2.north west) -- (M-4-2.south west);
+
+% Step 2: corner at (3,3), spans to col 4 / row 4
+\draw[stepline] (M-3-3.north west) -- (M-3-4.north east);
+\draw[stepline] (M-3-3.north west) -- (M-4-3.south west);
+
+% Step 3: corner at (4,4), just a small ┌
+\draw[stepline] (M-4-4.north west) -- (M-4-4.north east);
+\draw[stepline] (M-4-4.north west) -- (M-4-4.south west);
+
+% --- Right-side labels ---
+\node[right=6mm] at (M-1-4.east) {第1步};
+\node[right=6mm] at (M-2-4.east) {第2步};
+\node[right=6mm] at (M-3-4.east) {第3步};
+\node[right=6mm] at (M-4-4.east) {第4步};
+
+
+\end{tikzpicture}
+\end{figure}

@@ -16,6 +16,8 @@
 \titlespacing\section{0pt}{4pt}{2pt}
 \titlespacing\subsection{0pt}{3pt}{1pt}
 
+\titlespacing\subsubsection{0pt}{3pt}{1pt}
+
 \titleformat{\section}{\small\bfseries}{\thesection}{0.5em}{}
 \titleformat{\subsection}{\small\bfseries}{\thesubsection}{0.4em}{}
 
@@ -35,6 +37,11 @@
 % 去除首行缩进
 \setlength{\parindent}{0pt}
 
+% 引入绘图宏包
+
+\usepackage{tikz}
+\usetikzlibrary{matrix,calc,positioning}
+
 \begin{document}
 
 % 将正文默认字体改为 8pt
@@ -47,8 +54,15 @@
 
 \input{q3.tex}
 
+\input{q4.tex}
 
-% 第6章 数值微分法
-\input{section6.tex}
+\input{q5.tex}
+
+\input{q6.tex}
+
+% % 第6章 数值微分法
+% \input{section6.tex}
+
+\input{appendix.tex}
 
 \end{document}

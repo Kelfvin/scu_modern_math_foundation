@@ -1,0 +1,172 @@
+\section{线性方程组}
+
+已知线性方程组$\mathbf{A}x=b$
+
+\subsection{LU分解}
+
+对A进行LU分解（Doolittle分解），并利用分解结果求解方程组。
+
+\[
+\begin{bmatrix}
+    a_{11} & a_{12} & \dots & a_{1n} \\
+    a_{21} & a_{22} & \dots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{n1} & a_{n2} & \dots & a_{nn} \\
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    1 & \\
+    l_{21} & 1 \\
+    \vdots & \ddots & \ddots \\
+    l_{n1} & l_{n2} & \dots & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+    u_{11} & u_{12} & \dots & u_{1n} \\
+    \ & u_{22} & \dots & u_{2n} \\
+    \ & \ & \ddots & \vdots \\
+    \ & \ & \ & u_{nn} \\
+\end{bmatrix}
+\]
+
+\[
+u_{kj} = a_{kj} -\sum_{q=1}^{k-1} l_{kq} u_{qi}  \qquad
+l_{ik} = \frac{\left( a_{ik}-\sum_{q=1}^{k-1} l_{iq}u_{qk} \right)}{u_{kk}}
+\]
+
+技巧：卷面上直接抄上面的公式，然后使用紧凑法求解。
+
+\input{figure/LU.tex}
+
+得到L和U之后求解 $Ly=b$，得到$y$。接着求解 $Ux=y$，得到 $x$
+
+\subsection{Jacobi和Gauss-Seidel迭代}
+
+给定初值 $x^{(0)}=\begin{bmatrix} 1 & 1 & 1\end{bmatrix}^T$出发，分别用Jacobi和Gauss-Seidel迭代1步，并且判断两个方法的收敛性。
+
+\subsubsection*{Jacobi迭代}
+
+将$Ax=b$改写为
+
+\[
+\left\{ 
+    \begin{aligned}
+    x_1^{(k+1)} &= \frac{1}{a_{11}} \left(- a_{12}x_2^{(k)} - a_{13}x_3^{(k)} ... + b_1\right) \\
+    x_2^{(k+1)} &= \frac{1}{a_{22}} \left(- a_{21}x_1^{(k)} - a_{23}x_3^{(k)} ...  + b_2\right) \\
+    \vdots \\
+    x_n^{(k+1)} &= \frac{1}{a_{nn}} \left(- a_{n1}x_1^{(k)} - a_{n2}x_2^{(k)} ...  + b_n\right) \\
+    \end{aligned}
+    \right.
+    \Longrightarrow
+    \begin{aligned}
+        &x^{(k+1)} = B_J x^{(k)} + g \\
+        &B_J\text{从等式的右边抄}\\
+        &\text{不存在的} x_m \text{项取0}\\
+        &B_J=
+            \begin{array}{c}
+            \begin{array}{ccc}
+            x_1 & x_2 & x_3
+            \end{array}\\[2pt]
+            \left[
+            \begin{array}{ccc}
+            \ & \ & \ \\
+            \ & \ & \ \\
+            \ & \ & \
+            \end{array}
+            \right]
+            \end{array}
+    \end{aligned}
+\]
+
+\subsubsection*{Gauss-Seidel}
+
+参照Jacobi迭代，将$Ax=b$改写。只不过在计算$x_i^{(k+1)}$时，使用已经计算出的$x_j^{(k+1)}$，而不是$x_j^{(k)}$。口诀：“\textbf{右边的比左边的x的下标大就是k，比左边的x的下标小就是k+1}”
+
+迭代格式: $X^{(k+1)} = B_G x^{(k)} + g$ 
+
+求取$B_G$的时候需要将右边的 $k+1$ 项全部换为 $k$ 项。
+
+\subsubsection*{收敛判断}
+
+（1）\textbf{定理}（一般用不到）：$Ax=b$，若$A$为严格对角占优矩阵，则$A$可逆，Jacobi和Gauss-Seidel迭代均收敛。（严格对角占优矩阵：$a_{ii} > \sum_{j=1,j\neq i}^n |a_{ij}|$）
+
+（2）\textbf{定理}：若$A$为对称正定矩阵，则GS迭代收敛；若$A$对称且对角元全正（$a_{ii} > 0$）矩阵，则Jacobi方法收敛的充要条件为$A$和$2D-A$均为正定矩阵。 
+
+正定判定方法：顺序主子式>0 。顺序主子式：对于$n$阶矩阵$A$，从左上角开始依次取$k\times k$子矩阵的行列式。
+
+(3) \textbf{谱半径判断法}（不到万不得已，不建议使用）：
+\begin{itemize}
+    \item Jacobi迭代：$\rho(B_J) < 1$。\qquad $\rho(\cdot)$为矩阵特征值的绝对值的最大值。
+    \item Gauss-Seidel迭代：$\rho(B_G) < 1$
+\end{itemize}
+
+\subsection{Recharson迭代}
+
+令 $B=I-\alpha A$
+
+迭代格式：$x^{(k+1)} = Bx^{(k)} + \alpha b$ 
+
+收敛条件：$\lambda_B = 1-\alpha \lambda_A$，$\rho(B)<1 \Rightarrow |1-\alpha \lambda_A|<1$
+
+$\lambda_{\min} \leq \lambda_A \leq \lambda_{\max} \Rightarrow \rho(B) = \max\{|1-\alpha \lambda_{\min}|, |1-\alpha \lambda_{\max}|\}$
+
+最优参数 $\alpha$：$\alpha_{opt} = \frac{2}{\lambda_{\min} + \lambda_{\max}}$，$\rho(B)=\frac{\lambda_{\max}-\lambda_{\min}}{\lambda_{\max}+\lambda_{\min}} = \frac{\lambda_{\max}/\lambda_{\min}-1}{\lambda_{\max}/\lambda_{\min}+1}$
+
+求$A$的特征值：$|A-\lambda I|=0$
+
+\subsection{设计算法求矩阵第二大的特征值}
+
+(1) 求特征值范围
+
+\[
+|\lambda_i -a_{ii}| \leq \sum_{j=1,j\neq i}^n |a_ij| \quad \text{依次对} i \text{行除了} a_{ii} \text{外的其他元素求和}
+\]
+
+(2) 位移，将原本第二模大特征值变为最大或最小特征值
+
+$B=A-pI$，$B$的特征值变成$\lambda_i -p$
+
+$B=A+pI$，$B$的特征值变成$\lambda_i +p$
+
+(3) 求解 $B$ 的最大或最小特征值
+
+取初始向量 $x^{(0)}\neq 0$，迭代$k=0,1,2,...$
+
+幂法：求取B最大特征值
+
+\[
+\left\{
+\begin{aligned}
+    y^{(k)} &= \frac{x^{(k)}}{max(|x^{(k)}|)} \\
+    x^{(k+1)} &= Bx^{(k)}
+\end{aligned}
+\right.
+\qquad
+\left\{
+    \begin{aligned}
+        \lim_{k \to \infty} y^{(k)} &= \frac{v_1}{\max(v_1)}  \; \text{特征向量}\\
+        \lim_{k \to \infty} \max(x^{(k)}) &= \lambda_1 \; \text{最大特征值}
+    \end{aligned}
+\right.
+\]
+
+反幂法：求取B最小特征值
+
+\[
+\left\{
+\begin{aligned}
+    y^{(k)} &= \frac{x^{(k)}}{max(|x^{(k)}|)} \\
+    Bx^{(k+1)} &= y^{(k)}
+\end{aligned}
+\right.
+\qquad
+\left\{
+    \begin{aligned}
+        \lim_{k \to \infty} y^{(k)} &= \frac{v_n}{\max(v_n)}  \; \text{特征向量}\\
+        \lim_{k \to \infty} \max(x^{(k)}) &= \lambda_n \; \text{最小特征值}
+    \end{aligned}
+\right.
+\]
+
+(4) 将B的特征值转换回A的特征值
+
+
