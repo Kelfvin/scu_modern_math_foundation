@@ -87,13 +87,19 @@ l_{ik} = \frac{\left( a_{ik}-\sum_{q=1}^{k-1} l_{iq}u_{qk} \right)}{u_{kk}}
 
 \subsubsection*{收敛判断}
 
-（1）\textbf{定理}（一般用不到）：$Ax=b$，若$A$为严格对角占优矩阵，则$A$可逆，Jacobi和Gauss-Seidel迭代均收敛。（严格对角占优矩阵：$a_{ii} > \sum_{j=1,j\neq i}^n |a_{ij}|$）
+(1)\textbf{定理}（一般用不到）：$Ax=b$，若$A$为严格对角占优矩阵，则$A$可逆，Jacobi和Gauss-Seidel迭代均收敛。（严格对角占优矩阵：$a_{ii} > \sum_{j=1,j\neq i}^n |a_{ij}|$）
 
-（2）\textbf{定理}：若$A$为对称正定矩阵，则GS迭代收敛；若$A$对称且对角元全正（$a_{ii} > 0$）矩阵，则Jacobi方法收敛的充要条件为$A$和$2D-A$均为正定矩阵。 
+(2)\textbf{定理（推荐使用）}：若$A$为对称正定矩阵，则GS迭代收敛；若$A$对称且对角元全正（$a_{ii} > 0$）矩阵，则Jacobi方法收敛的\textbf{充要条件}为$A$和$2D-A$均为正定矩阵。 
 
 正定判定方法：顺序主子式>0 。顺序主子式：对于$n$阶矩阵$A$，从左上角开始依次取$k\times k$子矩阵的行列式。
 
-(3) \textbf{谱半径判断法}（不到万不得已，不建议使用）：
+(3) \textbf{定理}：若$A$为不可约且弱对角占优，则称$A$为不可约对角占优，且Jacobi和GS迭代均收敛。
+
+弱对角占优：$a_{ii} > \sum_{j=1,j\neq i}^n |a_{ij}|$
+
+不可约矩阵：将$A$看作有向图，若这张图是强联通（任意两个节点互相可达）则称$A$为不可约矩阵，否则为可约矩阵。
+
+(4) \textbf{谱半径判断法}（计算量过大，不到万不得已，不建议使用）：
 \begin{itemize}
     \item Jacobi迭代：$\rho(B_J) < 1$。\qquad $\rho(\cdot)$为矩阵特征值的绝对值的最大值。
     \item Gauss-Seidel迭代：$\rho(B_G) < 1$
