@@ -121,6 +121,8 @@ l_{ik} = \frac{\left( a_{ik}-\sum_{q=1}^{k-1} l_{iq}u_{qk} \right)}{u_{kk}}
 
 \textcircled{1} 计算 $\lambda_A$: $|A-\lambda I|=0$
 
+技巧：3阶的行列式化解后为 $p(\lambda) = \lambda^3 + a\lambda^2 + b\lambda + c$。一般有整根 $r$，$r$ 一定为 $c$ 的因子。取 $c$ 的因子 $\pm 1 \pm 2 \cdots$ 进去一个个试，找到整根后，使用多项式除法将 $p(\lambda)$ 除以 $(\lambda - r)$，得到一个二次多项式，再用求根公式求出另外两个根。
+
 \textcircled{2} $\lambda_B = 1-\alpha \lambda_A$，$\rho(B)<1 \Rightarrow |1-\alpha \lambda_A|<1$
 
 $\lambda_{\min} \leq \lambda_A \leq \lambda_{\max} \Rightarrow \rho(B) = \max\{|1-\alpha \lambda_{\min}|, |1-\alpha \lambda_{\max}|\}$
