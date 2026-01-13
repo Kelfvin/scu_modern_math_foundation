@@ -4,6 +4,12 @@
 
 笔记严格按照老师期末考试的6道大题整理。
 
+## 下载
+
+[PDF下载](https://github.com/Kelfvin/scu_modern_math_foundation/releases/latest)
+
+## 预览
+
 以下为笔记内容预览（非最新、最新请查看release）：
 
 ![第一页](./assets/1.jpg)
