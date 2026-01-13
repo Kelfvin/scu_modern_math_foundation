@@ -45,7 +45,7 @@ I_G &= \frac{b-a}{2} \left[ f\left( \frac{a+b}{2} - \frac{b-a}{2\sqrt{3}} \right
 
 \textcircled{2} 将$I^*,I_S,I_T,I_G$写成小数近似形式，位数按着整，只要做差可以确定出有效位数即可。
 
-\textcircled{3} 分别计算 $|I^*-I_S|$ 、 $|I^*-I_T|$和 $|I^*-I_G|$，记为 $e_S,e_T,e_G$。判断 $e_S,e_T,e_G$ 分别有多少位有效数字。
+\textcircled{3} 分别计算 $|I^*-I_S|$ 、 $|I^*-I_T|$和 $|I^*-I_G|$，记为 $e_S,e_T,e_G$。根据$I_S,I_T,I_G$和$e_S,e_T,e_G$ 判定有效数字。
 
 \textbf{有效数字}：$x=\pm 0.a_{1}a_{2}\dots a_{n} \times 10^m$，其中 m 是整数，$a_{1}$ 到 $a_{n}$ 都是 0 到 9 中的某个数，且 $a_{1} \neq 0$ 。如果有 $|x-x^*|<0.5 \times 10^{-k}$ ，则 $x^*$ 有 $m+k$ 位有效数字。
 
