@@ -45,7 +45,7 @@ l_{ik} = \frac{\left( a_{ik}-\sum_{q=1}^{k-1} l_{iq}u_{qk} \right)}{u_{kk}}
 
 \subsubsection*{Jacobi迭代}
 
-将$Ax=b$改写为
+（1）将$Ax=b$改写为
 
 \[
 \left\{ 
@@ -77,9 +77,13 @@ l_{ik} = \frac{\left( a_{ik}-\sum_{q=1}^{k-1} l_{iq}u_{qk} \right)}{u_{kk}}
     \end{aligned}
 \]
 
+（2）代入 $x^{(0)}$ 计算得 $x^{(1)} = [x_1^{(1)}, x_2^{(1)}, x_3^{(1)}]^T$
+
 \subsubsection*{Gauss-Seidel}
 
-参照Jacobi迭代，将$Ax=b$改写。只不过在计算$x_i^{(k+1)}$时，使用已经计算出的$x_j^{(k+1)}$，而不是$x_j^{(k)}$。口诀：“\textbf{右边的比左边的x的下标大就是k，比左边的x的下标小就是k+1}”
+（1）参照Jacobi迭代，将$Ax=b$改写。只不过在计算$x_i^{(k+1)}$时，使用已经计算出的$x_j^{(k+1)}$，而不是$x_j^{(k)}$。口诀：“\textbf{右边的比左边的x的下标大就是k，比左边的x的下标小就是k+1}”
+
+（2）代入 $x^{(0)}$ 计算得 $x^{(1)} = [x_1^{(1)}, x_2^{(1)}, x_3^{(1)}]^T$
 
 迭代格式: $X^{(k+1)} = B_G x^{(k)} + g$ 
 

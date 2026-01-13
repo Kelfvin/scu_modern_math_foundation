@@ -3,8 +3,14 @@
 % 控制页面边距
 \usepackage[left=6mm,right=6mm,top=8mm,bottom=8mm]{geometry}
 
+% ========= 引入常用宏包 ========= %
+
 % 引入数学公式宏包
 \usepackage{amsmath}
+
+% 引入绘图宏包
+\usepackage{tikz}
+\usetikzlibrary{matrix,calc,positioning}
 
 % 控制行间距
 \usepackage{setspace}
@@ -37,12 +43,13 @@
 % 去除首行缩进
 \setlength{\parindent}{0pt}
 
-% 引入绘图宏包
+\setlength{\columnsep}{10pt}        % 默认大概 10pt，可试 12pt
+\setlength{\columnseprule}{0.2pt}   % 加一条细竖线（不想要就设 0pt）
 
-\usepackage{tikz}
-\usetikzlibrary{matrix,calc,positioning}
+
 
 \begin{document}
+
 
 % 将正文默认字体改为 8pt
 \renewcommand\normalsize{\fontsize{8}{9.2}\selectfont}

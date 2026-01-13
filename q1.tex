@@ -4,20 +4,7 @@
 
 \subsection{基本解法：插值多项式+导数补偿}
 
-1. 列出下列形式的插值多项式：
-\[
-H(x) =\underbrace{N_n(x)}_\text{n个点插值}  + 
-\underbrace{
-    \overbrace{(Ax^{m-1}+Bx^{m-2}\cdots+Z)}^{\text{m为给定导数点的个数}} \times
-    \overbrace{(x-x_0)(x-x_1)\cdots(x-x_n)}^{x_i\text{为给定函数值的点}(i=0,1,\dots,n)}
-}_\text{导数补偿项}
-\]
-
-2. 使用Newton插值公式求 $N_n(x)$。
-
-3. 对 H(x) 求导数，并将导数条件代入，解出待定多项式的系数。
-
-\subsubsection*{NewTon插值}
+(1) 对给出函数值的n个点使用Newton插值公式求 $N_n(x)$。
 
 \begin{align*}
 f[x_{i},x_{j}] &= \frac{f(x_j)-f(x_i)}{x_{j}-x_{i}} &&\text{一阶差商} \\
@@ -36,7 +23,7 @@ f[x_{0},x_{1},x_{2},\dots,x_{k}] &= \frac{f[x_{1},x_{2},\dots ,x_{k}]-f[x_{0},x_
     \hline
     $x_2$ & $f(x_2)$ & $f[x_1,x_2]$ & $f[x_0,x_1,x_2]$ & \\
     \hline
-    $x_3$ & $f(x_3)$ & $f[x_3,x_2]$ & $f[x_2,x_1,x_3]$ & $f[x_3,x_2,x_1,x_0]$ \\
+    $x_3$ & $f(x_3)$ & $f[x_2,x_3]$ & $f[x_1,x_2,x_3]$ & $f[x_0,x_1,x_2,x_3]$ \\
     \hline
 \end{tabular}
 
@@ -49,12 +36,19 @@ $
     + f[x_0, \dots, x_n](x - x_0)\cdots(x - x_{n-1})
 $
 
-$
-    R_{n}(x) = f[x,x_{0},\dots,x_{n}]\omega(x)
-$
+(2) 列出下列形式的插值多项式：
+\[
+H(x) =\underbrace{N_n(x)}_\text{牛顿插值}  + 
+\underbrace{
+    \overbrace{(Ax^{m-1}+Bx^{m-2}\cdots)}^{\text{m为给定导数点的个数}} \times
+    \overbrace{(x-x_0)(x-x_1)\cdots(x-x_n)}^{x_i\text{为给定函数值的点}(i=0,1,\dots,n)}
+}_\text{导数补偿项}
+\]
+
+(3) 对 H(x) 求导数，并将导数条件代入，解出待定多项式的系数。
 
 
-\subsection{特殊情况：因式分解法（推荐使用）}
+\subsection{特殊情况：因式分解法（优先考虑）}
 
 \subsubsection*{模板 1：函数值相同}
 若已知$f(a)=c,\quad f(b)=c\quad (a\ne b)$（两个点相同）,则
@@ -78,7 +72,7 @@ $Q(x)=Ax^{m}+Bx^{m-1}+\cdots+Zx^{0}$
 \]
 同样若 $\deg H\le n$，则 $\deg Q\le n-2$。
 
-\subsection{Hermite插值余项}：
+\subsection{Hermite插值余项：}
 
 \[
 R(x) = \frac{f^{(n+m)}(\xi) }{(n+m)!} \prod_{i=1}^n (x - x_i) \prod_{x_j \in D}(x-x_j)
