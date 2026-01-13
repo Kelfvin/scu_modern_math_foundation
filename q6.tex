@@ -4,36 +4,30 @@
 
 \subsection{求解析解}
 
-\subsubsection*{分离变量法}
+\subsubsection*{分离变量法（可分离变量时使用）}
 
 如果 $f(x,y)$ 可以写成 $p(x)q(x)$ 的形式，则可分离变量：
 
-\[
-\begin{aligned}
-&y'=f(x,y) \Rightarrow y'=\frac{dy}{dx}=p(x)q(x) \Rightarrow \frac{1}{p(y)}dy=q(x)dx \\
-&y = \int \frac{1}{p(y)}dy + C = \int q(x)dx +C
-\end{aligned}
-\]
+$y'=f(x,y) \Rightarrow y'=\frac{dy}{dx}=p(x)q(x) \Rightarrow \frac{1}{p(y)}dy=q(x)dx$
+
+$y = \int \frac{1}{p(y)}dy + C = \int q(x)dx +C$
 
 \subsubsection*{公式法}
 
-对于 $y' + p(x)y = q(x)$
-\[
-\mu(x) y = \int \mu(x) q(x) dx + C \quad \text{其中} \quad \mu(x) = e^{\int p(x) dx}
-\]
+\textcircled{1} 改写为：$y' + p(x)y = q(x)$
 
-求积分: $\int e^{(ax+b)} (cx+d) dx = (c(ax-1)+ad) e^{ax+b} / a^2 + C$
+\textcircled{2} 求 $\mu(x)$：$\mu(x) = e^{\int p(x) dx}$
 
-秒杀公式：$y'(x) = ay(x)+bx+c$ 输出 $y(x) = -\frac{b}{a^2} - \frac{bx}{a} - \frac{c}{a} + k_1 e^{ax}$
+技巧：$\int e^{(ax+b)} (cx+d) dx =  e^{ax+b}\left(\frac{c(ax-1)}{a^2}+\frac{d}{a}\right) + C$
+
+\textcircled{3} 解$y(x)$：$\mu(x) y = \int \mu(x) q(x) dx + C \quad$
+
+技巧：$y'(x) = ay+bx+c$ 输出 $y(x) = -\frac{b}{a^2} - \frac{bx}{a} - \frac{c}{a} + k_1 e^{ax}$
 
 
 \subsection{欧拉法}
 
-\subsubsection*{隐式欧拉}
-
-\[
-y_{k+1} = y_k + h f(x_{k+1},y_{k+1})
-\]
+\subsubsection*{隐式欧拉} $y_{k+1} = y_k + h f(x_{k+1},y_{k+1})$
 
 \subsubsection*{改进欧拉}
 

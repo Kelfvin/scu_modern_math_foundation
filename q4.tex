@@ -131,15 +131,34 @@ $\lambda_{\min} \leq \lambda_A \leq \lambda_{\max} \Rightarrow \rho(B) = \max\{|
 |\lambda_i -a_{ii}| \leq \sum_{j=1,j\neq i}^n |a_{ij}| \quad \text{依次对} i \text{行除了} a_{ii} \text{外的其他元素求和}
 \]
 
+得到$\lambda_A$区间范围 $\lambda_{1} \in [a,b]$，$\lambda_{2} \in [b,c]$，$\lambda_{3} \in [d,e]$
+
 (2) 位移，将原本第二模大特征值变为最大或最小特征值
 
-$B=A-pI$，$B$的特征值为$\lambda_A -p$
+\textcircled{1}确定位移量
 
-$B=A+pI$，$B$的特征值为$\lambda_A +p$
+对区间整体进行位移，将第二大特征值区间移动到模最大或最小，可在数轴上标出辅助思考：
+
+$\lambda_1+p \in [a+p,b+p] \quad \lambda_2+p \in [b+p,c+p] \quad \lambda_3+p \in [pd+p,e+p]$
+
+或 $\lambda_1 -p \in [a-p,b-p] \quad \lambda_2 -p \in [b-p,c-p] \quad \lambda_3 -p \in [d-p,e-p]$
+
+\textcircled{2} 根据位移量$p$构造新矩阵$B$：
+
+\begin{itemize}
+    \item $B=A-pI$，$B$的特征值为$\lambda_A -p$
+    \item $B=A+pI$，$B$的特征值为$\lambda_A +p$
+\end{itemize}
+
 
 (3) 求解 $B$ 的最大或最小特征值
 
 取初始向量 $x^{(0)}\neq 0$，迭代$k=0,1,2,...$
+
+\begin{itemize}
+    \item A第2大模特征值 $\rightarrow$ B最大特征值 $\Rightarrow$ 幂法解B
+    \item A第2大模特征值 $\rightarrow$ B最小特征值 $\Rightarrow$ 反幂法解B
+\end{itemize}
 
 幂法：求取B最大特征值
 
@@ -154,7 +173,7 @@ $B=A+pI$，$B$的特征值为$\lambda_A +p$
 \left\{
     \begin{aligned}
         \lim_{k \to \infty} y^{(k)} &= \frac{v_1}{\max(v_1)}  \; \text{特征向量}\\
-        \lim_{k \to \infty} \max(x^{(k)}) &= \lambda_1 \; \text{最大特征值}
+        \lim_{k \to \infty} \max(x^{(k)}) &= \lambda_{B1} \; \text{最大特征值}
     \end{aligned}
 \right.
 \]
@@ -172,11 +191,9 @@ $B=A+pI$，$B$的特征值为$\lambda_A +p$
 \left\{
     \begin{aligned}
         \lim_{k \to \infty} y^{(k)} &= \frac{v_n}{\max(v_n)}  \; \text{特征向量}\\
-        \lim_{k \to \infty} \max(x^{(k)}) &= \lambda_n \; \text{最小特征值}
+        \lim_{k \to \infty} \max(x^{(k)}) &= \lambda_{Bn} \; \text{最小特征值}
     \end{aligned}
 \right.
 \]
 
 (4) 将B的特征值转换回A的特征值
-
-
