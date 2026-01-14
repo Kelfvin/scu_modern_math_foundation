@@ -4,6 +4,8 @@
 
 笔记严格按照老师期末考试的6道大题整理。
 
+> 2026-01-13：考完了，考试时间非常紧张（几乎不够）。建议：在考试的时候多列公式，不要执着于全部算完，把握好时间。
+
 ## 下载
 
 [PDF下载](https://github.com/Kelfvin/scu_modern_math_foundation/releases/latest)
